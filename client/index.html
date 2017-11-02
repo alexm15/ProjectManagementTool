@@ -15,36 +15,25 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </head>
 
-<body>
-    <div class="container-fluid">
-        <h1 class="text-center">ProjectManagementTool</h1>
+<body ng-app="myApp">
+    <div class="container-fluid responsive" ng-controller="mainController">
+        <h1 class="text-center">ProjectManagementTool {{runTrelloAPI}}</h1>
+        <p></p>
+
     </div>
 
 
-    <script src="js/plainTrelloAPI.js"></script>
-    <!-- <script>
-        var authenticationSuccess = function () {
-            console.log('Successful authentication');
-        };
-
-        var authenticationFailure = function () {
-            console.log('Failed authentication');
-        };
-
-        window.Trello.authorize({
-            type: 'popup',
-            name: 'Getting Started Application',
-            scope: {
-                read: 'true',
-                write: 'true'
-            },
-            expiration: 'never',
-            success: authenticationSuccess,
-            error: authenticationFailure
-        });
-    </script> -->
+    <!-- <script src="js/plainTrelloAPI.js"></script> -->
+    <!-- App -->
+    <script src="js/app.js"></script>
+    <!-- Controllers -->
+    <script src="js/controllers/mainController.js"></script>
+    <!-- Services -->
+    <script src="js/services/trelloAPI.js"></script>
+    
 </body>
 
 </html>
