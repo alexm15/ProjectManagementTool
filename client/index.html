@@ -1,39 +1,69 @@
 <!DOCTYPE html>
+<!-- 
+    dummy trello account used for the project:
+
+    email: project.management.tool17@gmail.com
+    password: DistributionOgIntegrationsTeknologi
+-->
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ProjectManagementTool</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-    <script src="https://trello.com/1/client.js?key=fac756720c4122c5c073573640104276"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-        crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://api.trello.com/1/client.js?key=6ee5f865fe77804b7e5d6e70bbb46350&token=478c9ec0c1c071d81fc489f9c7f1800d36d45e31d9d74e13bfe0583f18f9383c"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
 </head>
 
-<body ng-app="myApp">
-    <div class="container-fluid responsive" ng-controller="mainController">
-        <h1 class="text-center">ProjectManagementTool {{runTrelloAPI}}</h1>
-        <p></p>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Project Management Tool</h1>
+            <form>
+                Card Name: <input type="text" id="card_name">
+                Card Description: <input type="text" id="card_desc">
+                Start Date: <input type="date" id="start_date">
+                Due Date: <input type="date" id="due_date">
+                <input type="button" onclick="createCard(card_name.value, card_desc.value, start_date.value, due_date.value)" value="Create Card">
+            </form>
+        </div>
 
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>Gantt Chart</h3>
+                <div id="chart_div"></div>
+            </div>
+            <div class="col-sm-4">
+                <h3>Trello List</h3>
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p id="listName" class="text-left"></p>
+                            <button class="btn btn-default pull-right">
+                                <span class="glyphicon glyphicon-repeat" aria-hidden="true" id="refresh_list_btn"></span>
+                            </button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="list-group"></div>
+                        </div>
+                    </div>
+            </div>
+            
+            
+        </div>
+
+        
     </div>
-
-
-    <!-- <script src="js/plainTrelloAPI.js"></script> -->
-    <!-- App -->
-    <script src="js/app.js"></script>
-    <!-- Controllers -->
-    <script src="js/controllers/mainController.js"></script>
-    <!-- Services -->
-    <script src="js/services/trelloAPI.js"></script>
     
+    <script src="js/services/trello.js"></script>
+    <script src="js/services/ganttChart.js"></script>
 </body>
 
 </html>
