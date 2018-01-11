@@ -5,7 +5,7 @@
     email: project.management.tool17@gmail.com
     password: DistributionOgIntegrationsTeknologi
 -->
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
     <title>ProjectManagementTool</title>
@@ -20,13 +20,17 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+
+    <!--  AngularJS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="273615786738-qelsumi1i7iqjfhpgmo0srcpuefoklhd.apps.googleusercontent.com">
 </head>
 
-<body>
+<body ng-controller="myController">
     <div class="container">
         <div class="row">
-            <h1 class="text-center">Project Management Tool</h1>
+            <h1 class="text-center">Project Management Tool {{test}}</h1>
             <form>
                 Card Name: <input type="text" id="card_name">
                 Card Description: <input type="text" id="card_desc">
@@ -35,7 +39,8 @@
                 <input type="button" onclick="createCard(card_name.value, card_desc.value, start_date.value, due_date.value)" value="Create Card">
             </form>
         </div>
-
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a href="#" onclick="signOut();">Sign out</a>
         <div class="row">
             <div class="col-sm-8">
                 <h3>Gantt Chart</h3>
@@ -64,6 +69,26 @@
     
     <script src="js/services/trello.js"></script>
     <script src="js/services/ganttChart.js"></script>
+    <!--AngularJS-->
+    <script src="js/app.js"></script>
+
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
+            });
+        }
+
+    </script>
 </body>
 
 </html>
