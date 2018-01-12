@@ -10,7 +10,7 @@
 <head>
     <title>ProjectManagementTool</title>
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="https://api.trello.com/1/client.js?key=6ee5f865fe77804b7e5d6e70bbb46350&token=478c9ec0c1c071d81fc489f9c7f1800d36d45e31d9d74e13bfe0583f18f9383c"></script>
+    <!-- <script src="https://api.trello.com/1/client.js?key=6ee5f865fe77804b7e5d6e70bbb46350&token=478c9ec0c1c071d81fc489f9c7f1800d36d45e31d9d74e13bfe0583f18f9383c"></script> -->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
@@ -24,7 +24,6 @@
     <!--  AngularJS-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="273615786738-qelsumi1i7iqjfhpgmo0srcpuefoklhd.apps.googleusercontent.com">
 </head>
 
 <body ng-controller="myController">
@@ -39,8 +38,6 @@
                 <input type="button" onclick="createCard(card_name.value, card_desc.value, start_date.value, due_date.value)" value="Create Card">
             </form>
         </div>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <a href="#" onclick="signOut();">Sign out</a>
         <div class="row">
             <div class="col-sm-8">
                 <h3>Gantt Chart</h3>
@@ -51,44 +48,27 @@
                 <div class="panel panel-default">
                         <div class="panel-heading">
                             <p id="listName" class="text-left"></p>
-                            <button class="btn btn-default pull-right">
+                            <button class="btn btn-default pull-right" ng-click="GetTrelloList()">
                                 <span class="glyphicon glyphicon-repeat" aria-hidden="true" id="refresh_list_btn"></span>
                             </button>
                         </div>
                         <div class="panel-body">
                             <div class="list-group"></div>
+                            <p>{{Details}}</p>
                         </div>
                     </div>
             </div>
-            
+            <p ng-bind="ResponseDetails">Error data: {{ResponseDetails}}</p>
             
         </div>
 
         
     </div>
     
-    <script src="js/services/trello.js"></script>
-    <script src="js/services/ganttChart.js"></script>
+    <!-- <script src="js/services/trello.js"></script> -->
+    <!-- <script src="js/services/ganttChart.js"></script> -->
     <!--AngularJS-->
     <script src="js/app.js"></script>
-
-    <script>
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
-
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-            console.log('User signed out.');
-            });
-        }
-
-    </script>
 </body>
 
 </html>
